@@ -11,6 +11,11 @@ git clone <The custom git repo>
 git export https://github.com/egis/ProjectBootstrap
 NAME=<name of project> npm run init
 gradle setup
+
+<add  your project files>
+
+git commit -m "initial commit" -A
+git push origin master
 ```
 
 
