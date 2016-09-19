@@ -1,11 +1,10 @@
 {
-  "name": "__name",
-  "moduleName": "__name",
+  "name": "{{cookiecutter.name}}",
+  "moduleName": "{{cookiecutter.name}}",
   "port": 8102,
-  "mainFile": "__name",
+  "mainFile": "{{cookiecutter.name}}",
   "plugin": "PortalApp",
   "scripts": {
-    "init": "sed -i \"s/__name/`echo $NAME`/g\" package.json; sed -i \"s/__name/`echo $NAME`/g\" build.gradle",
     "dev": "rm -rf dist && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ plugin_watch --watch",
     "setup": "npm install && npm run update",
     "update": "sh node_modules/@egis/build-tools/npm-install.sh",
@@ -17,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/egis/__name.git"
+    "url": "https://github.com/egis/{{cookiecutter.name}}.git"
   },
   "version": "1.0.0"
 }

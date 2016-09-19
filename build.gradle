@@ -14,7 +14,7 @@ buildscript {
 }
 
 ext {
-    pkg = '__name'
+    pkg = '{{cookiecutter.name}}'
     libBucket = 'papertrail'
     libPrefix = "libs/"
 }

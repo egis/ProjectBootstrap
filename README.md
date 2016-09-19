@@ -7,13 +7,11 @@ See [gradle-build](https://github.com/egis/gradle-build) and
 
 ```
 
-git clone <The custom git repo>
-git export https://github.com/egis/ProjectBootstrap
-NAME=<name of project> npm run init
+brew install cookiecutter
+cookiecutter gh:egis/ProjectBootstrap -o MyProject
 gradle setup
 
 <add  your project files>
-
 git commit -m "initial commit" -A
 git push origin master
 ```
