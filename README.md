@@ -56,12 +56,20 @@ System/
 
 ## Building
 
-Ue the pt cli:
-`pt build` OR
-`pt build --watch`
+### Using the pt cli:
+* `pt build` OR `pt build --watch`
 
-* `gradle setup` download dependencies in `libs` and `test-libs`
-* `gradle upgrade`
-* `gradle install`
+### Using the underlying tools directly
+
+* `gradle setup`  
+downloads Java dependencies to `libs` and `test-libs`
+* `gradle upgrade` or `gradle install`  
+create and installation package to `build/distributions`  
+* `npm run build`  
+Compile the Javascript files to `build`
+* `npm run dev`  
+Compile javascript and deploy them to `$WORK_DIR` for hot reload
 * `gradle test`
-* `gradle npm`
+
+
+
