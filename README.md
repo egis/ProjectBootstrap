@@ -79,14 +79,24 @@ Compile javascript and deploy them to `$WORK_DIR` for hot reload
 1. Install pt CLI tool: `sudo pip install git+https://github.com/egis/papertrail-python-cli --upgrade`
 1. Create /opt dir if it doesn't exist yet: `mkdir /opt`
 1. Otherwise change its owner for pt to work fine:
-``sudo chown -R `whoami` /opt`` 
+``sudo chown -R `whoami` /opt``
 1. Install fresh PaperTrail: `pt upgrade`
 1. Symlink a PT/work dir for dev scripts: `ln -s /opt/PaperTrail /opt/PaperTrail/work`
 1. `chmod +x /opt/PaperTrail/run.sh`
 1. Shut down the PT process if 'pt upgrade' started it
 1. `cd /opt/PaperTrail`
-1. Change the conf/papertrail.properties as per instructions [here](https://github.com/egis/PT/blob/master/BUILDING.md#building)
-1. `./run.sh`
+1. Change the conf/papertrail.properties as per instructions [here](https://github.com/egis/PT/blob/master/BUILDING.md#building). Plus to those make sure you set "license" property to one allowing for workflows, and also this set of additional properties is recommended:
+```
+query.multiple.nodes=true
+smtp.port=3025
+smtp.server.enable=true
+smtp.server.port=3025
+http.port=8080
+conversion.oo.disable=true
+http.cache.disable=true
+session.db.lookup=true
+```
+Lastly, run PT: `./run.sh`
 
 ### Steps to upgrade PaperTrail locally if not yet:
 1. Shut down the PT process
@@ -100,5 +110,7 @@ Compile javascript and deploy them to `$WORK_DIR` for hot reload
 1. `gradle setup`
 1. `gradle install`
 1. Install NPM packages: `npm run setup`
+1. Create a deployment package: `gradle upgrade`
+1. Deploy it (be sure to have PT running at this step): `pt deploy build/distributions/myproject-upgrade.zip`. Replace the zip filename with the one for your project. Check the PT log for errors and make sure there are none.
 1. Export PT work dir to env var for 'npm run dev' to work correctly: `export WORK_DIR=/opt/PaperTrail`
 1. `npm run dev`
