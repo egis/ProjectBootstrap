@@ -98,7 +98,7 @@ session.db.lookup=true
 ```
 Lastly, run PT: `./run.sh`
 
-### Steps to upgrade PaperTrail locally if not yet:
+### Steps to upgrade PaperTrail locally:
 1. Shut down the PT process
 1. `pt upgrade`
 1. `cd /opt/PaperTrail`
