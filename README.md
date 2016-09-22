@@ -79,7 +79,7 @@ Compile javascript and deploy them to `$WORK_DIR` for hot reload
 1. Install pt CLI tool: `sudo pip install git+https://github.com/egis/papertrail-python-cli --upgrade`
 1. Create /opt dir if it doesn't exist yet: `mkdir /opt`
 1. Otherwise change its owner for pt to work fine:
-``sudo chown -R `whoami```
+``sudo chown -R `whoami` ``
 1. Install fresh PaperTrail: `pt upgrade`
 1. Symlink a PT/work dir for dev scripts: `ln -s /opt/PaperTrail /opt/PaperTrail/work`
 1. `chmod +x /opt/PaperTrail/run.sh`
