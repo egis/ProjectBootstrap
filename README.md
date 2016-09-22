@@ -81,10 +81,10 @@ Compile javascript and deploy them to `$WORK_DIR` for hot reload
 1. Otherwise change its owner for pt to work fine:
 ``sudo chown -R `whoami` /opt``
 1. Install fresh PaperTrail: `pt upgrade`
-1. Symlink a PT/work dir for dev scripts: `ln -s /opt/PaperTrail /opt/PaperTrail/work`
-1. `chmod +x /opt/PaperTrail/run.sh`
+1. Symlink a PT/work dir for dev scripts: `ln -s /opt/Papertrail /opt/Papertrail/work`
+1. `chmod +x /opt/Papertrail/run.sh`
 1. Shut down the PT process if 'pt upgrade' started it
-1. `cd /opt/PaperTrail`
+1. `cd /opt/Papertrail`
 1. Change the conf/papertrail.properties as per instructions [here](https://github.com/egis/PT/blob/master/BUILDING.md#building). Plus to those make sure you set "license" property to one allowing for workflows, and also this set of additional properties is recommended:
 ```
 query.multiple.nodes=true
@@ -101,7 +101,7 @@ Lastly, run PT: `./run.sh`
 ### Steps to upgrade PaperTrail locally:
 1. Shut down the PT process
 1. `pt upgrade`
-1. `cd /opt/PaperTrail`
+1. `cd /opt/Papertrail`
 1. `./run.sh`
 
 ### Steps to deploy the project to local PaperTrail:
@@ -112,5 +112,5 @@ Lastly, run PT: `./run.sh`
 1. Install NPM packages: `npm run setup`
 1. Create a deployment package: `gradle upgrade`
 1. Deploy it (be sure to have PT running at this step): `pt deploy build/distributions/myproject-upgrade.zip`. Replace the zip filename with the one for your project. Check the PT log for errors and make sure there are none.
-1. Export PT work dir to env var for 'npm run dev' to work correctly: `export WORK_DIR=/opt/PaperTrail`
+1. Export PT work dir to env var for 'npm run dev' to work correctly: `export WORK_DIR=/opt/Papertrail`
 1. `npm run dev`
