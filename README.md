@@ -8,7 +8,9 @@ See [gradle-build](https://github.com/egis/gradle-build) and
 ```
 
 brew install cookiecutter
-cookiecutter gh:egis/ProjectBootstrap -o MyProject
+cookiecutter gh:egis/ProjectBootstrap
+#enter the name for the compiled package
+#enter the name of your Git Repo
 gradle setup
 
 <add  your project files>
@@ -16,6 +18,11 @@ git commit -m "initial commit" -A
 git push origin master
 ```
 
+### Updating
+You can update an existing project using:
+```
+cookiecutter gh:egis/ProjectBootstrap -f
+```
 
 ## Dependencies
 
@@ -27,7 +34,7 @@ git push origin master
 
 ## PT-SCRIPTS
 
-PT-SCRIPTS are special folders inside deployment packages that are treated differently it handles and deploys
+**PT-SCRIPTS** are special folders inside deployment packages that are treated differently it handles and deploys
 
 * `install.groovy` for running arbritrary groovy scripts on deployment
 * Document archives e.g. Form exports
