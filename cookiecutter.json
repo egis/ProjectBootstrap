@@ -1,5 +1,4 @@
 {
-	"project_name": "",
-	"name": "test",
+	"name": "",
 	"directory_name": "{{cookiecutter.name}}"
 }
