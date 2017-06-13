@@ -9,8 +9,7 @@ See [gradle-build](https://github.com/egis/gradle-build) and
 
 brew install cookiecutter
 
-clone your git repo eg. (git clone git@github.com:Me/Project1.git)
-
+#clone your git repo eg. (git clone git@github.com:Me/Project1.git)
 cookiecutter gh:egis/ProjectBootstrap -o Project1
 
 #enter the name for the compiled package: (Project1)
