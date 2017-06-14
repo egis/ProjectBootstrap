@@ -36,19 +36,10 @@ cookiecutter gh:egis/ProjectBootstrap -f
 * PaperTrail CLI
 * Node.js
 
-
-## PT-SCRIPTS
-
-**PT-SCRIPTS** are special folders inside deployment packages that are treated differently it handles and deploys
-
-* `install.groovy` for running arbritrary groovy scripts on deployment
-* Document archives 
-* Workflows 
-
 ## Directory Structure
 
-* `upgrade` PT-SCRIPTS folder - Only included in the `-upgrade` bundle
-* `install` PT-SCRIPTS folder - Only included in the `-install` bundle
+* `upgrade` A [PT-SCRIPTS](http://developer.papertrail.co.za/Reference/Deployment.html#PT-SCRIPTS) folder - Only included in the `-upgrade` bundle
+* `install` A [PT-SCRIPTS](http://developer.papertrail.co.za/Reference/Deployment.html#PT-SCRIPTS) folder - Only included in the `-install` bundle
 * `resources` Import / updates documents using a node structure - See [System Nodes](http://support.papertrail.co.za/Reference/System-Nodes/)
 e.g.
 ```
