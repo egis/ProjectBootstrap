@@ -58,8 +58,8 @@ System/
 	images/
 	templates/
 ```
-* `src` [Javascript](http://developer.papertrail.co.za/Front%20End/Plugins//) or [Groovy](http://developer.papertrail.co.za/Back%20End/scripting/) based source files
-* `test` Groovy based source files see [Java Remote API](http://developer.papertrail.co.za/Remote/Java/)
+* `src` [Javascript](http://developer.papertrail.co.za/front-end/Plugins.html) or [Groovy](http://developer.papertrail.co.za/back-end/Scripting.html) based source files
+* `test` Groovy based source files see [Java Remote API](http://developer.papertrail.co.za/Remote/java-text.html)
 * `libs` JAR dependencies required by Groovy `src` classes
 * `test-libs` JAR dependencies required Groovy `test` classes
 * `package.json`
@@ -84,7 +84,7 @@ Compile javascript and deploy them to `$WORK_DIR` for hot reload
 * `gradle test`
 
 ### Quickstart
-1. Configure environment for [development](http://developer.papertrail.co.za/References/Dev-Environment/)
+1. Configure environment for [development](http://developer.papertrail.co.za/Reference/Dev-Environment.html)
 1. Shut down the PT process
 1. MacOSX: ```mkdir /opt && sudo chown -R `whoami` /opt```
 1. `pt upgrade`
