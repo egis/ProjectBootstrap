@@ -51,6 +51,7 @@ cookiecutter gh:egis/ProjectBootstrap -f
 * `install` PT-SCRIPTS folder - Only included in the `-install` bundle
 * `resources` Import / updates documents using a node structure - See [System Nodes](http://support.papertrail.co.za/Reference/System-Nodes/)
 e.g.
+
 ```
 System/
 	scripts/
@@ -58,6 +59,9 @@ System/
 	images/
 	templates/
 ```
+
+The install and resource folders are optional however
+
 * `src` [Javascript](http://developer.papertrail.co.za/Front%20End/Plugins//) or [Groovy](http://developer.papertrail.co.za/Back%20End/scripting/) based source files
 * `test` Groovy based source files see [Java Remote API](http://developer.papertrail.co.za/Remote/Java/)
 * `libs` JAR dependencies required by Groovy `src` classes
