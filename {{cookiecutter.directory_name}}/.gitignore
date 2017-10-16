@@ -12,3 +12,5 @@ bin/
 tmp/
 libs/*.jar
 test-libs/*.jar
+*.log
+*.zip
