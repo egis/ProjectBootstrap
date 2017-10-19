@@ -5,7 +5,6 @@ bin/
 *.ipr
 *.iml
 *.iws
-./*.zip
 .idea
 .keep
 .gradle
@@ -13,4 +12,4 @@ tmp/
 libs/*.jar
 test-libs/*.jar
 *.log
-*.zip
+/*.zip
