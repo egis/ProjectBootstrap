@@ -1,7 +1,7 @@
 {
   "name": "{{cookiecutter.name}}",
   "moduleName": "{{cookiecutter.name}}",
-  "port": 8102,
+  "port": 8120,
   "mainFile": "{{cookiecutter.name}}",
   "plugin": "PortalApp",
   "scripts": {
