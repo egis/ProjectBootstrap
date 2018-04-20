@@ -4,6 +4,9 @@
   "port": 8120,
   "mainFile": "{{cookiecutter.name}}",
   "plugin": "PortalApp",
+  "build": {
+    "autoImportAll": false
+  },
   "scripts": {
     "dev": "rm -rf dist && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ plugin_watch --watch",
     "setup": "npm install && npm run update",
