@@ -2,8 +2,7 @@ version: 2
 jobs:
   build:
     working_directory: ~/ProjectBootstrap
-    docker:
-      - image: egis/build-slave
+    machine: true
     steps:
       - checkout
 
@@ -44,7 +43,7 @@ jobs:
               --header "Content-Type: application/json" \
               --data '{"build_parameters": {"CIRCLE_JOB": "build"}}' \
               --request POST \
-              https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/generated-project-test > output
+              https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/generated-project-test > output1
             export build_num="$(cat output | jq '.build_num')"
             echo "build_num=${build_num}"
             .circleci/wait-for-build-status.sh
