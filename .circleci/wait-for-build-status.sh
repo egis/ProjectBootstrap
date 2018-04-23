@@ -10,10 +10,10 @@ while [ $attempt -le 590 ]; do
       https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/${build_num} > output
     status="$(cat output | jq '.status')"
 
-    if [[ "$status" == "success" ]]; then
+    if [[ "$status" == '"success"' ]]; then
       echo "build succeeded"
       exit 0
-    elif [[ "$status" == "failed" ]]; then
+    elif [[ "$status" == '"failed"' ]]; then
       echo "build failed"
       exit 1
     fi
