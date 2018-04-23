@@ -5,7 +5,11 @@ bin/
 *.ipr
 *.iml
 *.iws
+.idea
+.keep
 .gradle
 tmp/
 libs/*.jar
 test-libs/*.jar
+*.log
+/*.zip
