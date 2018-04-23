@@ -35,8 +35,7 @@ jobs:
           command: |
             git config --global user.email circleci@circleci
             git config --global user.name CircleCI
-            cd ..
-            ./node_modules/gh-pages/bin/gh-pages -d BootstrappedIronMan -b generated-project-test
+            ./node_modules/gh-pages/bin/gh-pages -d ../BootstrappedIronMan -b generated-project-test
 
       - run:
           name: run the build for test plugin project
