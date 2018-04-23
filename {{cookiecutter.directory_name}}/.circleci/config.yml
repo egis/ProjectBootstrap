@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ '{{' }} checksum "package.json" {{ '}}' }}
       - run:
           name: initialize
           command: |
@@ -35,7 +35,7 @@ jobs:
             gradle-2.7/bin/gradle upgrade
             gradle-2.7/bin/gradle install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ '{{' }} checksum "package.json" {{ '}}' }}
           paths:
             - node_modules
             - gradle-2.7
