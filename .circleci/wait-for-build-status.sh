@@ -10,7 +10,7 @@ while [ $attempt -le 590 ]; do
       --header "Content-Type: application/json" \
       https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/${build_num} > output
     cat output
-    status=$(cat output | jq '.status')"
+    status="$(cat output | jq '.status')"
 
     if [[ "$status" == "success" ]]; then
       echo "build succeeded"
