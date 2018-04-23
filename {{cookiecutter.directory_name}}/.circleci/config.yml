@@ -1,0 +1,88 @@
+version: 2
+
+defaults: &defaults
+  machine: true
+  working_directory: ~/plugin
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: initialize
+          command: |
+            npm run basic-install
+            build-tools-ci-upgrade-node
+            build-tools-ci-upgrade-yarn
+      - run:
+          name: pre-deps
+          command: |
+            npm run basic-install
+            sudo chmod -R a+w /usr/local
+            yarn config set cache-folder ~/.cache/yarn
+      - run:
+          name: install-deps
+          command: |
+            build-tools-ci-install-gradle
+            gradle-2.7/bin/gradle setup
+      - run:
+          name: build
+          command: |
+            gradle-2.7/bin/gradle jar
+            gradle-2.7/bin/gradle upgrade
+            gradle-2.7/bin/gradle install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - gradle-2.7
+            - ~/.cache/yarn
+            - yarn.lock
+      - persist_to_workspace:
+          root: ~/plugin
+          paths:
+            - build
+            - package.json
+            - uat
+      - run:
+          name: collect-artifacts
+          command: |
+            mkdir ci-artifacts
+            find ./build/distributions/ -type f | xargs -i{} cp {} ci-artifacts/
+            OUT_DIR=ci-artifacts build-tools-ci-collect-deps-versions
+            cp yarn.lock ci-artifacts/
+          when: always
+      - store_artifacts:
+          path: ci-artifacts/
+
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/plugin
+      - run:
+          name: initialize
+          command: |
+            npm run basic-install
+            build-tools-ci-install-pt-cli
+      - run:
+          name: deploy
+          command: |
+            source uat && pt deploy build/distributions/*-install.zip
+            source uat && pt deploy build/distributions/*-upgrade.zip
+
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
