@@ -1,4 +1,4 @@
 {
 	"name": "",
-	"directory_name": "."
+	"directory_name": "{{cookiecutter.name}}"
 }
