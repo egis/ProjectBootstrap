@@ -7,7 +7,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-v1-{{ checksum "package.json" }}
 
       - run:
           name: pre-requisites
@@ -17,7 +17,7 @@ jobs:
             yarn
 
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-v1-{{ checksum "package.json" }}
           paths:
             - node_modules
             - ~/.cache/yarn
