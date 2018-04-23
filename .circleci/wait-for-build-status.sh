@@ -8,7 +8,7 @@ while [ $attempt -le 590 ]; do
     echo "Waiting for server to be up (attempt: $attempt)..."
     curl --user ${CIRCLE_API_TOKEN}: \
       --header "Content-Type: application/json" \
-      https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/generated-project-test/${build_num} > output
+      https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/${build_num} > output
     cat output
     status=$(cat output | jq '.status')"
 
