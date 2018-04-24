@@ -1,0 +1,4 @@
+{
+	"routes": [["/plugins/PortalApp", "build/{{cookiecutter.name}}.js"]],
+	"watchedFiles": "dist/main/**/*.js"
+}
