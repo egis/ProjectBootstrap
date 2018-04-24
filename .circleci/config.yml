@@ -35,7 +35,7 @@ jobs:
             if [[ "$TEST_GENERATED_PROJECT" == "true" ]]; then
               git config --global user.email circleci@circleci
               git config --global user.name CircleCI
-              ./node_modules/.bin/gh-pages --dist ../BootstrappedIronMan --branch generated-project-test --dotfiles
+              ./node_modules/.bin/gh-pages --dist ../BootstrappedIronMan --branch generated-project-test --dotfiles --silent
             fi
       - run:
           name: run the build for test plugin project
