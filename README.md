@@ -26,7 +26,9 @@ git push origin master
 ### Updating
 You can update an existing project using:
 ```
-cookiecutter gh:egis/ProjectBootstrap -f
+cookiecutter gh:egis/ProjectBootstrap --no-input -f name=MyProject directory_name=MyProject
+# or if ran from project dir
+cookiecutter --no-input -f gh:egis/ProjectBootstrap name=MyProject directory_name=.
 ```
 
 ## Dependencies
