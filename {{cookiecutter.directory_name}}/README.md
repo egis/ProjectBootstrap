@@ -17,7 +17,7 @@ pt deploy build/distributions/*-upgrade.zip
 ### Dev mode
 The most convenient dev env for plugins is via [Browsersync](https://github.com/egis/build-tools/#browsersync). 
 To set this up,
-* in one terminal window run `cd MyProject && npm run dev`
-* in another terminal window run `cd build-tools && npm run browsersync -- --plugin=MyProject`
+* in one terminal window run `cd {{cookiecutter.name}} && npm run dev`
+* in another terminal window run `cd build-tools && npm run browsersync -- --plugin={{cookiecutter.name}}`
 
 Normal standalone `npm run dev` dev env works too.
