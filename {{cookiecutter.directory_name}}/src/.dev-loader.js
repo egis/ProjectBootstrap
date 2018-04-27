@@ -8,7 +8,7 @@ window[moduleName] = (function() {
 
     var p = new Promise( function (resolve) {
         EgisUI.loaded(function() {
-            console.log('Loading ' + moduleName + ' plugin with SystemJS..', EgisUI.currentTimeWithMillisString());
+            log.info('Loading ' + moduleName + ' plugin with SystemJS..', EgisUI.currentTimeWithMillisString());
             var map = {};
             map[moduleName] = 'http://HOST:PORT/dist/main/dev-index';
             System.config({
@@ -20,7 +20,7 @@ window[moduleName] = (function() {
                 _.forEach(m, function(value, key) {
                     moduleProxy[key] = value;
                 });
-                console.log(moduleName + ' plugin loaded in', new Date().getTime() - d0, EgisUI.currentTimeWithMillisString());
+                log.info(moduleName + ' plugin loaded in', new Date().getTime() - d0, EgisUI.currentTimeWithMillisString());
                 resolve(m);
             });
         });
