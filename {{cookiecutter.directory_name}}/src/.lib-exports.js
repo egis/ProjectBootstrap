@@ -9,4 +9,4 @@ export {
 };
 
 //pick the files code
-import './{{cookiecutter.name}}Customization';
+import './js/{{cookiecutter.name}}Customization';

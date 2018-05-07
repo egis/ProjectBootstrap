@@ -28,7 +28,7 @@ export default class {{cookiecutter.name}}Customization {
 }
 
 UI.plugin(() => {
-    console.log('Loading {{cookiecutter.name}} plugin @@version @@timestamp');
+    log.info('Loading {{cookiecutter.name}} plugin @@version @@timestamp');
 
     window.customization = new {{cookiecutter.name}}Customization();
 });
