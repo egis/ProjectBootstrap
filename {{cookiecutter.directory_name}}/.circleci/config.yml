@@ -33,6 +33,7 @@ jobs:
           command: |
             gradle-2.7/bin/gradle jar
             gradle-2.7/bin/gradle upgrade
+            if [ ! -e build/*.js ]; then exit 1; fi
             gradle-2.7/bin/gradle install
       - save_cache:
           key: dependency-cache-{{ '{{' }} checksum "package.json" {{ '}}' }}
