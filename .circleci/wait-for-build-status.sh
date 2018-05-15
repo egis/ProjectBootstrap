@@ -13,6 +13,9 @@ while [ $attempt -le 590 ]; do
     if [[ "$status" == '"success"' ]]; then
       echo "build succeeded"
       exit 0
+    elif [[ "$status" == '"fixed"' ]]; then
+      echo "build succeeded"
+      exit 0
     elif [[ "$status" == '"failed"' ]]; then
       echo "build failed"
       exit 1
