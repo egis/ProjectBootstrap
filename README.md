@@ -9,11 +9,9 @@ See [gradle-build](https://github.com/egis/gradle-build) and
 
 brew install cookiecutter
 
-#clone your git repo eg. (git clone git@github.com:Me/Project1.git)
-cookiecutter gh:egis/ProjectBootstrap -o Project1
-
-#enter the name for the compiled package: (Project1)
-#enter the name of your Git Repo: (Project1)
+#clone your git repo eg. (git clone git@github.com:Me/MyProject.git)
+cd MyProject
+cookiecutter --no-input -f gh:egis/ProjectBootstrap name=MyProject directory_name=.
 
 gradle setup
 gradle idea
@@ -26,8 +24,7 @@ git push origin master
 ### Updating
 You can update an existing project using:
 ```
-cookiecutter gh:egis/ProjectBootstrap --no-input -f name=MyProject directory_name=MyProject
-# or if ran from project dir
+cd MyProject
 cookiecutter --no-input -f gh:egis/ProjectBootstrap name=MyProject directory_name=.
 ```
 
