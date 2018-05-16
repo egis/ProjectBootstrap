@@ -1,0 +1,4 @@
+{
+	"routes": [["/plugins/PortalApp", "build/BootstrappedIronMan.js"]],
+	"watchedFiles": "dist/main/**/*.js"
+}
