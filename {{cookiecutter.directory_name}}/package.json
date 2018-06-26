@@ -18,9 +18,7 @@
     "full": "npm run setup && npm run build && npm test"
   },
   "devDependencies": { 
-    "@egis/build-tools": "^3.0.5",
-    "@egis/egis-ui": "latest",
-    "@egis/portal-app": "latest"
+    "@egis/build-tools": "^3.0.5"
   },
   "repository": {
     "type": "git",
