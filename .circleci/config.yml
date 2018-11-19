@@ -82,8 +82,10 @@ workflows:
   version: 2
   main:
     jobs:
-      - build
+      - build:
+          context: org-global
       - deploy:
+          context: org-global
           filters:
             branches:
               only: master
