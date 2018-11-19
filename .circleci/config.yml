@@ -51,3 +51,10 @@ jobs:
               echo "build_num=${build_num}"
               .circleci/wait-for-build-status.sh
             fi
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build:
+          context: org-global
