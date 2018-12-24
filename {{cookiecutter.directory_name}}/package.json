@@ -9,16 +9,15 @@
   },
   "scripts": {
     "dev": "rm -rf dist && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ --srcDir src/js plugin_watch --watch",
-    "basic-install": "npm install -g @egis/build-tools@$(cat package.json | jq '.devDependencies[\"@egis/build-tools\"]' | sed 's/\"//g')",
-    "setup": "npm run basic-install && npm run update",
-    "update": "update-build-tools-deps",
+    "install-ci-tools": "npm install -g @egis/ci-tools",
+    "setup": "yarn --frozen-lockfile",
     "test": "echo ok",
     "build": "rm -rf dist/main; rm -rf build/ && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ --env production --srcDir src/js plugin",
     "update:windows": "sh node_modules/@egis/build-tools/npm-install.sh",
-    "full": "npm run setup && npm run build && npm test"
+    "full": "yarn setup && yarn build && yarn test"
   },
   "devDependencies": { 
-    "@egis/build-tools": "^3.0.5"
+    "@egis/build-tools": "^4.0.0"
   },
   "repository": {
     "type": "git",

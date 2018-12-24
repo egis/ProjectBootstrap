@@ -28,6 +28,7 @@ jobs:
           command: |
             cd ..
             ~/.local/bin/cookiecutter --no-input ./ProjectBootstrap name=BootstrappedIronMan directory_name=BootstrappedIronMan
+            cd BootstrappedIronMan
 
       - run:
           name: push the test plugin project to github
