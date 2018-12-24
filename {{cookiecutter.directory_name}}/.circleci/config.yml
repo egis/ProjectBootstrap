@@ -51,7 +51,6 @@ jobs:
             - node_modules
             - gradle-2.7
             - ~/.cache/yarn
-            - yarn.lock
       - persist_to_workspace:
           root: ~/plugin
           paths:
@@ -63,7 +62,6 @@ jobs:
           command: |
             find ./build/distributions/ -type f | xargs -i{} cp {} ci-artifacts/
             OUT_DIR=ci-artifacts yarn ci-tools-collect-deps-versions
-            cp yarn.lock ci-artifacts/
           when: always
       - store_artifacts:
           path: ci-artifacts/
