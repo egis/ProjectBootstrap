@@ -15,7 +15,6 @@ jobs:
           command: |
             mkdir ci-artifacts
             cat package.json | jq '.dependencies, .devDependencies' > cache-key.txt
-            cat bower.json >> cache-key.txt
             echo ${NODE_VERSION} >> cache-key.txt
             cp cache-key.txt ci-artifacts/
       - restore_cache:
