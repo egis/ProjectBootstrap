@@ -6,6 +6,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "install-ci-tools": "npm install -g @egis/ci-tools",
     "test": "echo ok"
   },
   "repository": {

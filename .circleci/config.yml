@@ -10,12 +10,18 @@ jobs:
       - restore_cache:
           key: dependency-cache-v1-{{ checksum "package.json" }}
 
+    - run:
+        name: initial-steps
+        command: |
+          npm run install-ci-tools
+          ci-tools-upgrade-node
+          ci-tools-upgrade-yarn
+
       - run:
           name: pre-requisites
           command: |
             pip install --user cookiecutter
-            npm install -g yarn
-            yarn
+            yarn --frozen-lockfile
 
       - save_cache:
           key: dependency-cache-v1-{{ checksum "package.json" }}
