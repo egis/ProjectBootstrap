@@ -1,32 +1,39 @@
 version: 2
 
 defaults: &defaults
-  machine: true
   working_directory: ~/plugin
+  docker:
+    - image: egis/build-slave
 
 jobs:
   build:
     <<: *defaults
     steps:
       - checkout
+      - run:
+          name: build-cache-key
+          command: |
+            mkdir ci-artifacts
+            cat package.json | jq '.dependencies, .devDependencies' > cache-key.txt
+            echo ${NODE_VERSION} >> cache-key.txt
+            cp cache-key.txt ci-artifacts/
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "cache-key.txt" }}
       - run:
           name: initialize
           command: |
-            npm run basic-install
-            build-tools-ci-upgrade-node
-            build-tools-ci-upgrade-yarn
+            npm run install-ci-tools
+            ci-tools-upgrade-node
+            ci-tools-upgrade-yarn
       - run:
           name: pre-deps
           command: |
-            npm run basic-install
             sudo chmod -R a+w /usr/local
             yarn config set cache-folder ~/.cache/yarn
       - run:
           name: install-deps
           command: |
-            build-tools-ci-install-gradle
+            ci-tools-install-gradle
             gradle-2.7/bin/gradle setup
       - run:
           name: build
@@ -38,12 +45,11 @@ jobs:
           name: check build
           command: if [ ! -e build/*.js ]; then exit 1; fi
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "cache-key.txt" }}
           paths:
             - node_modules
             - gradle-2.7
             - ~/.cache/yarn
-            - yarn.lock
       - persist_to_workspace:
           root: ~/plugin
           paths:
@@ -53,10 +59,8 @@ jobs:
       - run:
           name: collect-artifacts
           command: |
-            mkdir ci-artifacts
             find ./build/distributions/ -type f | xargs -i{} cp {} ci-artifacts/
-            OUT_DIR=ci-artifacts build-tools-ci-collect-deps-versions
-            cp yarn.lock ci-artifacts/
+            OUT_DIR=ci-artifacts yarn ci-tools-collect-deps-versions
           when: always
       - store_artifacts:
           path: ci-artifacts/
@@ -66,11 +70,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/plugin
-      - run:
-          name: initialize
-          command: |
-            npm run basic-install
-            build-tools-ci-install-pt-cli
       - run:
           name: deploy
           command: |

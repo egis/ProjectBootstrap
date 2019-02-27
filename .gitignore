@@ -13,6 +13,6 @@ libs/*.jar
 test-libs/*.jar
 *.log
 /*.zip
-yarn.lock
+yarn-error.log
 .DS_Store
 package-lock.json
