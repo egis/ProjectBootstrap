@@ -13,6 +13,7 @@ brew install cookiecutter
 cd MyProject
 cookiecutter --no-input -f gh:egis/ProjectBootstrap name=MyProject directory_name=.
 
+yarn
 gradle setup
 gradle idea
 
