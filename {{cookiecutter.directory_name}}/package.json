@@ -4,9 +4,6 @@
   "port": 8120,
   "mainFile": "{{cookiecutter.name}}",
   "plugin": "PortalApp",
-  "build": {
-    "autoImportAll": false
-  },
   "scripts": {
     "dev": "rm -rf dist && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ --srcDir src/js plugin_watch --watch",
     "install-ci-tools": "npm install -g @egis/ci-tools",
@@ -17,7 +14,7 @@
     "full": "yarn setup && yarn build && yarn test"
   },
   "devDependencies": { 
-    "@egis/build-tools": "^5.0.0-pre.1"
+    "@egis/build-tools": "^6.0.1-pre.2"
   },
   "repository": {
     "type": "git",
