@@ -1,5 +1,10 @@
 # {{cookiecutter.name}}
 
+### Installation 
+[![CircleCI](https://circleci.com/gh/egis/{{cookiecutter.name}}.svg?style=svg&circle-token=d88417ff93c9732d08a7ac9a1b6964d1259e516a)](https://circleci.com/gh/egis/{{cookiecutter.name}})
+
+[![DEV](https://img.shields.io/badge/Environment-DEV-green.svg)](https:///{{cookiecutter.name}}-dev.papertrail.co.za)
+
 ## Dev env & UAT
 
 ### Deployment
