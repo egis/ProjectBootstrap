@@ -38,9 +38,9 @@ jobs:
       - run:
           name: build
           command: |
-            gradle-2.7/bin/gradle jar
-            gradle-2.7/bin/gradle upgrade
-            gradle-2.7/bin/gradle install
+            gradle-2.7/bin/gradle jar --daemon
+            gradle-2.7/bin/gradle upgrade --daemon
+            gradle-2.7/bin/gradle install --daemon
       - run:
           name: check build
           command: if [ ! -e build/*.js ]; then exit 1; fi
