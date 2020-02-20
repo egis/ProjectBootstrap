@@ -36,7 +36,7 @@ jobs:
             cd ..
             ~/.local/bin/cookiecutter --no-input ./ProjectBootstrap name=BootstrappedIronMan directory_name=BootstrappedIronMan
             cd BootstrappedIronMan
-            yarn
+            yarn --ignore-engines
 
       - run:
           name: push the test plugin project to github
