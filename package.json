@@ -7,14 +7,14 @@
   "scripts": {
     "dev": "rm -rf dist && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ --srcDir src/js plugin_watch --watch",
     "install-ci-tools": "npm install -g @egis/ci-tools",
-    "setup": "yarn --frozen-lockfile",
+    "setup": "yarn --frozen-lockfile --ignore-engines",
     "test": "echo ok",
     "build": "rm -rf dist/main; rm -rf build/ && gulp --gulpfile node_modules/@egis/build-tools/Gulpfile.js --cwd ./ --env production --srcDir src/js plugin",
     "update:windows": "sh node_modules/@egis/build-tools/npm-install.sh",
     "full": "yarn setup && yarn build && yarn test"
   },
-  "devDependencies": { 
-    "@egis/build-tools": "^6.0.1-pre.2"
+  "devDependencies": {
+    "@egis/build-tools": "^11.0.0"
   },
   "repository": {
     "type": "git",
