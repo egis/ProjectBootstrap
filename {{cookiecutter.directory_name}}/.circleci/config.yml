@@ -75,11 +75,27 @@ jobs:
           command: |
             source uat && pt deploy build/distributions/*-install.zip
             source uat && pt deploy build/distributions/*-upgrade.zip
-
+            
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/plugin
+      - run:
+          name: publish
+          command: |
+            for f in `ls build/distributions*`; do aws s3 cp build/distributions/$f s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/; done            
 
 workflows:
   version: 2
   main:
     jobs:
       - build:
+          context: org-global
+      - publish:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
           context: org-global
