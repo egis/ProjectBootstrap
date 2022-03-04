@@ -56,6 +56,7 @@ jobs:
             - build
             - package.json
             - uat
+            - README.md
       - run:
           name: collect-artifacts
           command: |
@@ -76,6 +77,7 @@ jobs:
             source uat && pt deploy build/distributions/*-install.zip
             source uat && pt deploy build/distributions/*-upgrade.zip
             
+
   publish:
     <<: *defaults
     steps:
@@ -84,8 +86,8 @@ jobs:
       - run:
           name: publish
           command: |
-            for f in `ls build/distributions*`; do aws s3 cp build/distributions/$f s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/; done            
-
+            for f in `ls build/distributions*`; do aws s3 cp build/distributions/$f s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/; done
+            aws s3 cp README.md s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/
 workflows:
   version: 2
   main:
@@ -95,7 +97,7 @@ workflows:
       - publish:
           filters:
             branches:
-              only: master
+              only: main
           requires:
             - build
           context: org-global
