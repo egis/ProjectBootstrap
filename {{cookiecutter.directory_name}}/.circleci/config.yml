@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/plugin
   docker:
-    - image: egis/build-slave
+    - image: egis/docker-build-slave
 
 jobs:
   build:
