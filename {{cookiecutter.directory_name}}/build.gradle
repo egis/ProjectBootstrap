@@ -35,4 +35,89 @@ test() {
     useTestNG {
         excludeGroups 'broken'
     }
-}                                                                                                                                                                                                                                                                              
+}
+
+task deployUpgrade(dependsOn: upgrade ){
+    group "PaperTrail"
+    description "Deploys Upgrade"
+
+    doLast{
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeploying File: ${buildDir}/distributions/${project.name}-upgrade.zip\nTo: ${environment.get('PT_API')}\n"
+        }
+        exec {
+            workingDir "."
+            executable 'pt'
+            args "deploy","${buildDir}/distributions/${project.name}-upgrade.zip"
+
+
+        }
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeployed File: ${buildDir}/distributions/${project.name}-upgrade.zip\n"
+        }
+    }
+}
+
+task deployInstall(dependsOn: install ){
+    group "PaperTrail"
+    description "Deploys Upgrade"
+
+    doLast{
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeploying File: ${buildDir}/distributions/${project.name}-install.zip\nTo: ${environment.get('PT_API')}\n"
+        }
+        exec {
+            workingDir "."
+            executable 'pt'
+            args "deploy","${buildDir}/distributions/${project.name}-install.zip"
+        }
+
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeployed File: ${buildDir}/distributions/${project.name}-install.zip\n"
+        }
+    }
+}
+
+task restartDocker(){
+    group "PaperTrail"
+    description "Restarts Docker"
+
+    doLast{
+
+        exec {
+            workingDir "."
+            executable 'docker'
+            args "stop" ,  dockerContainerName
+        }
+        exec {
+            workingDir "."
+            executable 'docker'
+            args "start" ,  dockerContainerName
+        }
+    }
+}
+
+task jarDance( dependsOn: deployUpgrade){
+    group "PaperTrail"
+    description "Deploys Jar to Docker"
+
+    doFirst{
+        exec {
+            workingDir buildDir
+            executable 'docker'
+            args "cp" , "./libs/${project.name}.jar", "${dockerContainerName}:/opt/Papertrail/deploy"
+        }
+    }
+
+    finalizedBy restartDocker
+}
+
+
