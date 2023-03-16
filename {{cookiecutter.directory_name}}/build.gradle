@@ -120,4 +120,70 @@ task jarDance( dependsOn: deployUpgrade){
     finalizedBy restartDocker
 }
 
+task restartPT(){
+    group "PaperTrail"
+    description "Restarts Papertrail"
+
+    doLast{
+
+        exec {
+            workingDir "."
+            executable 'pt'
+            args "post" ,  'papertrail/restart'
+        }
+    }
+}
+
+task fullDeploy( dependsOn: jarDance){
+    group "PaperTrail"
+    description "Deploys Everything and restarts PT"
+
+    doFirst{
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeploying File: ${ptPropertyFile}\nTo: ${dockerContainerName}"
+        }
+        exec {
+            workingDir buildDir
+            executable 'docker'
+            args "cp" , "${ptPropertyFile}", "${dockerContainerName}:/opt/Papertrail/conf"
+        }
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeployed Property File"
+        }
+    }
+
+    finalizedBy restartPT
+}
+
+task deployProperties(){
+    group "PaperTrail"
+    description "Deploys Property File to Docker"
+
+    doFirst{
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeploying File: ${ptPropertyFile}\nTo: ${dockerContainerName}"
+        }
+        exec {
+            workingDir buildDir
+            executable 'docker'
+            args "cp" , "${ptPropertyFile}", "${dockerContainerName}:/opt/Papertrail/conf"
+        }
+        exec {
+            workingDir "."
+            executable 'echo'
+            args "\nDeployed Property File"
+        }
+    }
+
+    finalizedBy restartPT
+}
+
+
+
 
