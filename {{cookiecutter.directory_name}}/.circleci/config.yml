@@ -4,7 +4,8 @@ defaults: &defaults
   working_directory: ~/plugin
   docker:
     - image: egis/docker-build-slave
-
+  environment:
+    NODE_VERSION: 17.2.0
 jobs:
   build:
     <<: *defaults
