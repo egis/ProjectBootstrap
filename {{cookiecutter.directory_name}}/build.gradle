@@ -28,7 +28,7 @@ dependencies {
     repositories {
         jcenter()
     }
-    testCompile 'org.testng:testng:6.9.10'
+    //testCompile 'org.testng:testng:6.9.10'
 }
 
 test() {
