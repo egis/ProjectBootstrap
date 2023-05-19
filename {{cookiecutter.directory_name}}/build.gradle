@@ -185,5 +185,19 @@ task deployProperties(){
 }
 
 
+task dockerStop(type: Exec){
+    group 'Papertrail'
+    description "Stops all docker containers"
 
+    commandLine "sh", "StopDocker.sh"
+
+}
+
+task dockerRun(type: Exec, dependsOn: dockerStop) {
+    group "Papertrail"
+    description "Runs a Papertrail docker container"
+    def version = project.hasProperty('v') ? project.getProperty('v') : 'latest'
+    def name = project.hasProperty('n') ? project.getProperty('n') : dockerContainerName
+    commandLine "docker", "run", "--name", name, "-d","-v", environment.get('WORK_DIR') + "/work/plugins/:/file_drs", "--expose", "80", "-p", "127.0.0.1:8080:80/tcp", "egis/papertrail:" + version
+}
 
