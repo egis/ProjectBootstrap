@@ -36,7 +36,7 @@ jobs:
           command: |
             git config --global url."https://github.com/".insteadOf git://github.com/
             echo 'export TERM=xterm' >> $BASH_ENV
-            cp ./libs/*.txt /root/plugin/libs/
+            
             sh gradlew
             ./gradlew -v
             ./gradlew setup

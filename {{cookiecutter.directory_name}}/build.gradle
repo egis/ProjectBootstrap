@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
 
-        classpath "com.egis:gradle-build:4.0.52"
+        classpath "com.egis:gradle-build:4.0.62"
         classpath 'org.ajoberstar:grgit:1.1.0'
         classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
     }
