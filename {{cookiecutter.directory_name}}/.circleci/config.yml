@@ -41,6 +41,14 @@ jobs:
             ./gradlew -v
             ./gradlew setup
       - run:
+          name: Run Inspection
+          command: |
+            ./gradlew codenarcMain --info || true
+      - run:
+          name: Collect Inspection Report
+          command: |
+            cp build/reports/codenarc/main.html ci-artifacts/codenarc.html
+      - run:
           name: build
           command: |
             ./gradlew jar
