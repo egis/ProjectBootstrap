@@ -309,7 +309,7 @@ ruleset {
     UnnecessaryParenthesesForMethodCallWithClosure
     UnnecessaryPublicModifier
     UnnecessaryReturnKeyword
-    UnnecessarySelfAssignment
+    //UnnecessarySelfAssignment
     UnnecessarySemicolon
     UnnecessaryStringInstantiation
 
