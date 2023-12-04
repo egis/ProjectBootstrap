@@ -7,9 +7,10 @@ buildscript {
     }
     dependencies {
 
-        classpath "com.egis:gradle-build:4.0.65"
+        classpath "com.egis:gradle-build:4.0.73"
         classpath 'org.ajoberstar:grgit:1.1.0'
         classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+        classpath "org.kordamp.gradle:codenarc-gradle-plugin:0.51.0"
     }
 }
 
@@ -23,6 +24,20 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: "com.egis.gradle"
+apply plugin: 'codenarc'
+
+codenarc {
+    reportFormat = 'html'
+}
+
+tasks.codenarcMain {
+    configFile = rootProject.file("codenarc/config/codenarc.groovy")
+    source = fileTree('src') {
+        include '**/*.groovy'
+    } + fileTree('resources') {
+        include '**/*.groovy'
+    }
+}
 
 dependencies {
     repositories {
