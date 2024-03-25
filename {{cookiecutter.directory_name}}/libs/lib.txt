@@ -1,1 +1,0 @@
-# add any JAR depdencies here see https://github.com/egis/gradle-build#dependency-management
