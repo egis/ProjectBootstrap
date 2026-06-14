@@ -95,7 +95,7 @@ jobs:
             for f in `ls build/distributions*`; do aws s3 cp build/distributions/$f s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/; done
             aws s3 cp README.md s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/
 workflows:
-  version: 2
+  version: 2.1
   main:
     jobs:
       - build:
