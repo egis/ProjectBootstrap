@@ -1,4 +1,4 @@
 # add any JAR depdencies here see https://github.com/egis/gradle-build#dependency-management
-commons.txt
+commons-889.txt
 papertrail-api.txt
 papertrail-core.jar
