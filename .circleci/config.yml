@@ -1,10 +1,11 @@
-version: 2
+version: 2.1
 
 defaults: &defaults
   working_directory: ~/plugin
   docker:
-    - image: egis/build-slave
-
+    - image: egis/docker-build-slave
+  environment:
+    NODE_VERSION: 17.2.0
 jobs:
   build:
     <<: *defaults
@@ -33,14 +34,18 @@ jobs:
       - run:
           name: install-deps
           command: |
-            ci-tools-install-gradle
-            gradle-2.7/bin/gradle setup
+            git config --global url."https://github.com/".insteadOf git://github.com/
+            echo 'export TERM=xterm' >> $BASH_ENV
+            
+            sh gradlew
+            ./gradlew -v
+            ./gradlew setup
       - run:
           name: build
           command: |
-            gradle-2.7/bin/gradle jar --daemon
-            gradle-2.7/bin/gradle upgrade --daemon
-            gradle-2.7/bin/gradle install --daemon
+            ./gradlew jar
+            ./gradlew upgrade
+            ./gradlew install
       - run:
           name: check build
           command: if [ ! -e build/*.js ]; then exit 1; fi
@@ -56,11 +61,15 @@ jobs:
             - build
             - package.json
             - uat
+            - README.md
+            - TestCases.html
       - run:
           name: collect-artifacts
           command: |
             find ./build/distributions/ -type f | xargs -i{} cp {} ci-artifacts/
             OUT_DIR=ci-artifacts yarn ci-tools-collect-deps-versions
+            cp README.md ci-artifacts/
+            cp TestCases.html ci-artifacts/
           when: always
       - store_artifacts:
           path: ci-artifacts/
@@ -75,11 +84,29 @@ jobs:
           command: |
             source uat && pt deploy build/distributions/*-install.zip
             source uat && pt deploy build/distributions/*-upgrade.zip
+            
 
-
+  publish:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/plugin
+      - run:
+          name: publish
+          command: |
+            for f in `ls build/distributions*`; do aws s3 cp build/distributions/$f s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/; done
+            aws s3 cp README.md s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/
+            aws s3 cp TestCases.html s3://papertrail/public/clients/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM/
 workflows:
-  version: 2
+  version: 2.1
   main:
     jobs:
       - build:
+          context: org-global
+      - publish:
+          filters:
+            branches:
+              only: main
+          requires:
+            - build
           context: org-global
