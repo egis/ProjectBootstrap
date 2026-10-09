@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: egis/build-slave
+      - image: egis/docker-build-slave
     working_directory: ~/ProjectBootstrap
     steps:
       - checkout
